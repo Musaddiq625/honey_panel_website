@@ -1,28 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'pages/login.dart';
+import 'package:honey_panel/translations/my_translations.dart';
+import 'pages/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await firebase_core.Firebase.initializeApp();
   await Firebase.initializeApp();
-  await GetStorage.init();
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  // final box = GetStorage();
 
-  // checkCurrentPage(){
-  //   MyStorage().getCurrentPage().then((value) {
-  //   });
-  // }
+class MyApp extends StatelessWidget {
 
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   //
   // var currentPage = MyStorage().currentPage;
   // @override
@@ -36,16 +28,17 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      translations: MyTranslations(),locale: Locale('en'),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:
+      home:SplashScreenPage()
       // currentPage
 
 
         // MyStorage().currentPage
 
-      Login(),
+      // LoginPage(),
       // Dashboard()
     );
   }
